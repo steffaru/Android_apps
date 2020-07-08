@@ -9,11 +9,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".GenerateToken"></activity>
+        <activity android:name=".AddNewTokenName"></activity>
+        <activity android:name=".GenerateToken" />
         <activity
             android:name=".MainTokenGenerator"
             android:label="@string/title_activity_main_token_generator"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

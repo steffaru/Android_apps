@@ -1,6 +1,34 @@
 <resources>
-    <string name="app_name">Token Generator</string>
-    <string name="title_activity_main_token_generator">MainActivityTokenGenerator</string>
     <!-- Strings used for token generator -->
+    <string name="app_name">Token Generator</string>
+
+    <!-- Strings used for titles -->
+    <string name="title_activity_main_token_generator">MainActivityTokenGenerator</string>
+    <string name="titleGenerate">Generate Token</string>
+    <string name="titleAdd">Add New Token Name</string>
+
+
+    <!-- Strings used for texts -->
     <string name="tkg">Token Generator</string>
+    <string name="hint">Token Name</string>
+    <string name="textInputLayout">Type here</string>
+
+
+    <!-- Strings used for buttons -->
+    <string name="btnGenerate">Generate</string>
+    <string name="btnGen">Generate New Token</string>
+    <string name="btnAdd">Add New Token</string>
+    <string name="btnAddNew">Add New Token Name</string>
+
+
+    <!-- Strings used for Spinner -->
+    <string-array name="choiceDefault">
+        <item>Select a token name</item>
+        <item>Token1</item>
+        <item>Token2</item>
+        <item>Token3</item>
+        <item>Token4</item>
+        <item>Token5</item>
+    </string-array>
+
 </resources>
