@@ -24,11 +24,6 @@
     <!-- Strings used for Spinner -->
     <string-array name="choiceDefault">
         <item>Select a token name</item>
-        <item>Token1</item>
-        <item>Token2</item>
-        <item>Token3</item>
-        <item>Token4</item>
-        <item>Token5</item>
     </string-array>
 
 </resources>

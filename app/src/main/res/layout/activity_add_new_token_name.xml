@@ -18,7 +18,6 @@
         android:layout_marginRight="20dp"
         android:text="@string/titleAdd"
         android:textSize="24sp"
-        android:textStyle="bold"
         android:typeface="sans"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -59,7 +58,6 @@
         android:background="#2E7D32"
         android:text="@string/titleAdd"
         android:textColor="#FFFFFF"
-        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout" />

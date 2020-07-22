@@ -1,18 +1,16 @@
 package com.example.tokengenerator;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.SharedPreferences;
+import android.content.ContentValues;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.tokengenerator.Entity.UserTokenNameContract;
 import com.google.android.material.textfield.TextInputEditText;
-
-import java.util.HashSet;
-import java.util.Set;
 
 public class AddNewTokenName extends AppCompatActivity implements View.OnClickListener {
 
@@ -29,22 +27,18 @@ public class AddNewTokenName extends AppCompatActivity implements View.OnClickLi
     public void onClick(View view) {
         TextInputEditText tokenValue = (TextInputEditText) findViewById(R.id.tokenValue);
         String value = tokenValue.getText().toString();
+        MyDBHelper myDBHelper = new MyDBHelper(getApplicationContext());
+
         if(value != "") {
-            SharedPreferences myPreferences
-                    = PreferenceManager.getDefaultSharedPreferences(AddNewTokenName.this);
-            SharedPreferences.Editor myEditor = myPreferences.edit();
+            ContentValues row1 = new ContentValues();
 
-            Set<String> setString = myPreferences.getStringSet("tokens", null);
+            SQLiteDatabase myDatabase = myDBHelper.getWritableDatabase();
 
-            if(setString != null) {
-                setString.add(value);
-            } else {
-                setString = new HashSet<String>();
-                setString.add(value);
-            }
-            myEditor.putStringSet("tokens", setString);
-            myEditor.commit();
-            Toast.makeText(this, value, Toast.LENGTH_SHORT).show();
+            row1.put(UserTokenNameContract.UserTokenNameEntry.TOKEN_NAME, value);
+            myDatabase.insert(UserTokenNameContract.UserTokenNameEntry.USER_TOKEN_NAME, null, row1);
+
         }
+
     }
+
 }

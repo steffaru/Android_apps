@@ -1,28 +1,22 @@
 package com.example.tokengenerator;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.os.Build;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import java.nio.Buffer;
-import java.nio.ByteBuffer;
-import java.nio.charset.Charset;
-import java.nio.charset.StandardCharsets;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.tokengenerator.Entity.UserTokenNameContract;gi
+
 import java.security.SecureRandom;
-import android.util.Base64;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
 
 
 public class GenerateToken extends AppCompatActivity implements View.OnClickListener {
@@ -31,8 +25,29 @@ public class GenerateToken extends AppCompatActivity implements View.OnClickList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_generate_token);
+        fillSpinner();
         Button btnGenerate = (Button) findViewById(R.id.btnGenerate);
         btnGenerate.setOnClickListener(this);
+    }
+
+    private void fillSpinner() {
+        MyDBHelper myDBHelper = new MyDBHelper(getApplicationContext());
+
+        SQLiteDatabase myDatabaseRead = myDBHelper.getReadableDatabase();
+
+        String[] columns = {UserTokenNameContract.UserTokenNameEntry.TOKEN_NAME};
+        String[] args = {};
+
+        Cursor cursor = myDatabaseRead.query(UserTokenNameContract.UserTokenNameEntry.USER_TOKEN_NAME, columns, "", args, "", "", "");
+        ArrayList<String> names = new ArrayList<String>();
+        int i = 0;
+        while (cursor.moveToNext()){
+            names.add(cursor.getString(0));
+            i++;
+        }
+        Spinner spin = (Spinner) findViewById(R.id.spinner_token);
+        spin.setAdapter(new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_dropdown_item,names));
+        cursor.close();
     }
 
     public String generateToken() {
